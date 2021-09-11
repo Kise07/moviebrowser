@@ -12,12 +12,14 @@ function App() {
   const[searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    console.log(searchText, "is the search text")
+    if(searchText) {
+      console.log(searchText, "is the search text")
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=b94fee07cfd9ff6aa88fffe47b128a64&language=en-US&query=${searchText}&page=1&include_adult=false`)
     .then(Response => Response.json())
     .then(data => {
       setSearchResults(data.results)
-    })
+     })
+    }
   }, [searchText])
 
 
