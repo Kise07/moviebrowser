@@ -8,8 +8,17 @@ import { useState, useEffect } from "react";
 
 function App() {
 
-  const [searchReaults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const[searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    console.log(searchText, "is the search text")
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=b94fee07cfd9ff6aa88fffe47b128a64&language=en-US&query=${searchText}&page=1&include_adult=false`)
+    .then(Response => Response.json())
+    .then(data => {
+      setSearchResults(data.results)
+    })
+  }, [searchText])
 
 
   return (
@@ -22,7 +31,7 @@ function App() {
         </Route>
         <Route path="/about" component={AboutView} />
         <Route path="/search">
-          <SearchView keyword={searchText} searchReaults={searchReaults}/>
+          <SearchView keyword={searchText} searchResults={searchResults}/>
         </Route>
         {/* This is #2 way of linking */}
       </Switch>

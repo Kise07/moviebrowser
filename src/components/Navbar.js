@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 
 const Navbar = ({ searchText,setSearchText }) => {
+  const histoy = useHistory()
 
   const updateSearchtext = (e) => {
+    histoy.push('/search')
     setSearchText(e.target.value)
   }
   return (
