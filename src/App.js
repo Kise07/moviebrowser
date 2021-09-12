@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import AboutView from "./components/About";
 import SearchView from "./components/SearchView";
+import MovieView from "./components/MovieView";
 import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -28,13 +29,14 @@ function App() {
       <Navbar searchText={searchText} setSearchText={setSearchText} />
       <Switch>
         <Route path="/" exact>
-          {/* This is #1 way of linking */}
+          {/* This is #1 way of linking & helpful for props & keys to pass */}
           <Home />
         </Route>
         <Route path="/about" component={AboutView} />
         <Route path="/search">
           <SearchView keyword={searchText} searchResults={searchResults}/>
         </Route>
+        <Route path="/movies/:id" component={MovieView} />
         {/* This is #2 way of linking */}
       </Switch>
     </div>

@@ -1,7 +1,5 @@
 import Hero from "./Hero";
 
-// TMDB API KEY = b94fee07cfd9ff6aa88fffe47b128a64
-
 const MovieCard = ({ movie }) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
   return (
