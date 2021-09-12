@@ -2,17 +2,38 @@ import Hero from "./Hero";
 
 // TMDB API KEY = b94fee07cfd9ff6aa88fffe47b128a64
 
+const MovieCard = ({ movie }) => {
+  const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+  return (
+    <div className="col-lg-3 col-md-3 col-2 my-4">
+     <div className="card">
+      <img src={posterUrl} className="card-img-top" alt={movie.original_title} />
+       <div className="card-body">
+        <h5 className="card-title">{movie.original_title}</h5>
+        <a href="#" className="btn btn-primary">Show details</a>
+       </div>
+     </div>
+    </div>
+  )
+}
+
 const SearchView = ({ keyword,searchResults }) => {
   const title = `You are searching for ${keyword}`
 
   const resultsHTML = searchResults.map((obj, i) => {
-    return <div key={i}>{obj.original_title}</div>
+    return <MovieCard movie={obj} key={i} />
   })
 
   return (
     <>
       <Hero text={title} />
-      {resultsHTML}
+      {resultsHTML &&
+       <div className="container">
+         <div className="row">
+           {resultsHTML}
+         </div>
+       </div>
+      }
     </>
   );
 };
